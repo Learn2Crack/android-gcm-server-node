@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>Push Notification</title>
+
+		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  		<!-- Angular Material Library -->
+  	<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+  	<script type="text/javascript" src="js/main.js"></script>
+		
+</head>	
+<body style="background: rgb(12, 34, 56);">
+	<div ng-app="Push" >
+	 
+  
+  <md-content layout="row"  layout-align="center" style="background: none;">
+    <div flex="25"></div>
+
+    <div flex="50" ng-controller = "pushController" ng-cloak>
+
+      <md-progress-linear md-mode="indeterminate" ng-show="progress"></md-progress-linear>
+      <md-list md-whiteframe="2">
+
+        <md-subheader class="md-no-sticky">Total Registered Devices : <strong>{{deviceCount}}</strong></md-subheader>
+
+        <md-list-item  class="md-2-line" ng-repeat="device in devices" ng-click="showSendMessageDialog($event,$index)" style=" height: 20px; background: rgb(232, 232, 232) ">
+
+          <img ng-src="img/icon.png" class="md-avatar" /> 
+
+          <div class="md-list-item-text" layout="column">
+
+            <h3><strong>{{ device.deviceName }}</strong></h3>
+            <h4>IMEI : {{ device.deviceId }}</h4>
+            <md-icon class="md-secondary" ng-click="showDeleteConfirmDialog($event, $index,devices)" aria-label="Delete" >
+              <i class="material-icons">delete</i>
+            </md-icon>
+
+          </div>
+
+        </md-list-item>
+
+      </md-list>
+      </br>
+    </div>
+    <div flex="25"></div>
+  </md-content>
+     
+	</div>
+</body>
+</html>
